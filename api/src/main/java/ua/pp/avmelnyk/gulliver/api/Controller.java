@@ -11,7 +11,7 @@ public class Controller {
 
     @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Product index() {
-        return new Product(123l, "category", "123456", "Product", 100.00);
+        return new Product(123l, "category", "123456", "Product", 100l);
     }
 
 }
