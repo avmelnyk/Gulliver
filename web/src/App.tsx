@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 
-import * as product from './productApiMock';
+import * as productMock from './productApiMock';
 import { IProduct } from './productApiMock';
 
 interface IAppState {
@@ -22,7 +22,7 @@ export class App extends React.Component {
       try {
         this.setState({
           isLoading: false,
-          product: await product.getById('1')
+          product: await productMock.getById('1')
         });
       } catch (e) {
         this.setState({

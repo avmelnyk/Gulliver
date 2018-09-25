@@ -3,7 +3,7 @@ import { delay } from './util';
 
 export { IProduct } from './productApi';
 
-const product1 = {
+const product1: IProduct = {
   "category": "category",
   "code": "123456",
   "name": "Product",
@@ -11,7 +11,7 @@ const product1 = {
   "product_id": "1"
 };
 
-const product2 = {
+const product2: IProduct = {
   "category": "category",
   "code": "123456",
   "name": "Product",
@@ -19,26 +19,23 @@ const product2 = {
   "product_id": "2"
 };
 
-export function getAll (): Promise<IProduct[]> {
-  return delay(700).then(
-    () => [
-      { ...product1 },
-      { ...product2 }
-    ]
-  );
+export function getAll () {
+  const result: IProduct[] = [
+    { ...product1 },
+    { ...product2 }
+  ];
+  return delay(900).then(() => result);
 }
 
-export function getById (id: string): Promise<IProduct> {
+export function getById (id: string) {
   if (id === product1.product_id) {
-    return delay(900).then(
-      () => ({ ...product1 })
-    );
+    const result: IProduct = { ...product1 };
+    return delay(200).then(() => result);
   }
 
   if (id === product2.product_id) {
-    return delay(200).then(
-      () => ({ ...product2 })
-    );
+    const result: IProduct = { ...product2 };
+    return delay(700).then(() => result);
   }
 
   return Promise.reject({ code: 404, message: 'not found' });
