@@ -1,4 +1,4 @@
-package ua.pp.avmelnuk.gulliver;
+package ua.pp.avmelnyk.gulliver;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
