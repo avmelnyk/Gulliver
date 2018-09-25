@@ -20,7 +20,7 @@ export class App extends React.Component {
             <li>
               <Link to="/">Products</Link>
             </li><li>
-              <Link to="/n0t-f0und">Non-existent page</Link>
+              <Link to="/n0t-f0und">Non existent page</Link>
             </li>
           </ul>
 

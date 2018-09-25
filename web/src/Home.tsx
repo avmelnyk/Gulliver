@@ -9,7 +9,7 @@ export const Home = () => (
       </li><li>
         <Link to="/products/2">Product 2</Link>
       </li><li>
-        <Link to="/products/1337">Link to a non-existant product</Link>
+        <Link to="/products/1337">Link to a non existent product</Link>
       </li>
     </ul>
   </div>
