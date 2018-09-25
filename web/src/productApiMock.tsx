@@ -38,5 +38,6 @@ export function getById (id: string) {
     return delay(700).then(() => result);
   }
 
-  return Promise.reject({ code: 404, message: 'not found' });
+  const result = { code: 404, message: 'not found' };
+  return delay(900).then(() => Promise.reject(result));
 }

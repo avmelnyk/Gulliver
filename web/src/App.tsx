@@ -1,71 +1,31 @@
 import * as React from 'react';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route
+} from "react-router-dom";
+
 import './App.css';
-
-import * as productMock from './productApiMock';
-import { IProduct } from './productApiMock';
-
-interface IAppState {
-  isLoading: boolean | null;
-  product: IProduct | null;
-}
+import { Home } from './Home';
+import { ProductPageContainer } from './ProductPageContainer';
 
 export class App extends React.Component {
-  state: IAppState = {
-    isLoading: null,
-    product: null,
-  }
-
-  componentDidMount () {
-    this.setState({
-      isLoading: true
-    }, async () => {
-      try {
-        this.setState({
-          isLoading: false,
-          product: await productMock.getById('1')
-        });
-      } catch (e) {
-        this.setState({
-          isLoading: false,
-          product: null
-        });
-      }
-    });
-  }
-
   render () {
-    const { isLoading, product } = this.state;
+    return (
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Products</Link>
+            </li>
+          </ul>
 
-    if (isLoading) {
-      return (
-        <div className="app">
-          ... loading ...
-        </div>
-      );
-    }
+          <hr />
 
-    if (product) {
-      return (
-        <div className="app">
-          <header className="product__header">
-            <h6>{product.category}</h6>
-            <h1 className="product__title">{product.name}</h1>
-            <small>код: {product.code}</small>
-            <p>{product.price / 100} грн</p>
-          </header>
-          <p className="product__description">
-            hello, the description is going to be here
-          </p>
+          <Route exact path="/" component={Home} />
+          <Route path="/products/:id" component={ProductPageContainer} />
         </div>
-      );
-    } else {
-      return (
-        <div className="app">
-          <header className="product__header">
-            <h1 className="product__title">404 &mdash; No Product Found</h1>
-          </header>
-        </div>
-      );
-    }
+      </Router>
+    );
   }
 }
