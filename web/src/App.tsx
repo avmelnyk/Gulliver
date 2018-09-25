@@ -1,15 +1,8 @@
 import * as React from 'react';
 import './App.css';
 
-import { get } from './ajax';
-
-interface IProduct {
-  product_id: number;
-  category: string;
-  code: string;
-  name: string;
-  price: number;
-}
+import * as product from './productApiMock';
+import { IProduct } from './productApiMock';
 
 interface IAppState {
   isLoading: boolean | null;
@@ -26,10 +19,17 @@ export class App extends React.Component {
     this.setState({
       isLoading: true
     }, async () => {
-      this.setState({
-        isLoading: false,
-        product: await this._fetchProduct()
-      });
+      try {
+        this.setState({
+          isLoading: false,
+          product: await product.getById('1')
+        });
+      } catch (e) {
+        this.setState({
+          isLoading: false,
+          product: null
+        });
+      }
     });
   }
 
@@ -67,9 +67,5 @@ export class App extends React.Component {
         </div>
       );
     }
-  }
-
-  private _fetchProduct(): Promise<IProduct> {
-    return get('/api');
   }
 }
