@@ -1,5 +1,5 @@
-import { delay } from './util';
 import { IProduct } from './productApi';
+import { delay } from './util';
 
 export { IProduct } from './productApi';
 
