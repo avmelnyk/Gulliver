@@ -13,7 +13,7 @@ export function post (url: string, data: any) {
   .then(response => response.json());
 }
 
-export function patch (url: string) {
+export function patch (url: string, data: any) {
   return fetch(url, {
     method: 'PATCH',
     headers: {
