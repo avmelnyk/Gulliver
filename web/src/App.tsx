@@ -6,7 +6,7 @@ import {
   Switch
 } from "react-router-dom";
 
-import { NotFound } from './404';
+import { NotFound } from './404';  // TODO: async import
 import './App.css';
 import { Home } from './Home';
 import { ProductPageContainer } from './ProductPageContainer';
@@ -20,7 +20,7 @@ export class App extends React.Component {
             <li>
               <Link to="/">Products</Link>
             </li><li>
-              <Link to="/n0t-f0und">Non existent page</Link>
+              <Link to="/0_o">Non existent page</Link>
             </li>
           </ul>
 

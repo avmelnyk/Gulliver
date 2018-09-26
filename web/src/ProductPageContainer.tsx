@@ -1,64 +1,51 @@
 import * as React from 'react';
+import { Component } from 'react';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
-import { getById, IProduct } from './productApiMock';
+import { fetchById, selectProduct } from './product';
+import { IProduct } from './productApi';
 import { ProductPage } from './ProductPage';
 
-interface IProps {
+interface IContainerProps {
+  fetchById: typeof fetchById;
+  product: IProduct & {
+    status: 'loading' | 'loaded' | 'error' | null;
+  };
+}
+
+interface IRouteParams {
   id: string;
 }
 
-interface IStateInitial {
-  status: null;
-}
+type ProductPageFetcherProps = IContainerProps & RouteComponentProps<IRouteParams>;
 
-interface IStateLoading {
-  status: 'loading';
-  product: null;
-}
-
-interface IStateLoaded {
-  status: 'loaded';
-  product: IProduct;
-}
-
-interface IStateError {
-  status: 'error';
-  error: any;
-}
-
-type IState = IStateInitial | IStateLoading | IStateLoaded | IStateError;
-
-export class ProductPageContainer extends React.Component<RouteComponentProps<IProps>, IState> {
-  state: IState = { status: null };
-
+class ProductPageFetcher extends Component<ProductPageFetcherProps> {
   componentDidMount () {
     const { id } = this.props.match.params;
+    this.props.fetchById(id);
+  }
 
-    this.setState({
-      status: 'loading'
-    }, async () => {
-      try {
-        this.setState({
-          status: 'loaded',
-          product: await getById(id)
-        });
-      } catch (error) {
-        this.setState({
-          status: 'error',
-          error
-        });
-      }
-    });
+  componentDidUpdate (prevProps: ProductPageFetcherProps) {
+    const { id } = this.props.match.params;
+    if (prevProps.match.params.id !== id) {
+      this.props.fetchById(id);
+    }
   }
 
   render () {
-    if (this.state.status === 'loaded') {
-      return <ProductPage product={this.state.product} />;
+    if (this.props.product.status === 'loaded') {
+      return <ProductPage product={this.props.product} />;
     }
-    if (this.state.status === 'error') {
+    if (this.props.product.status === 'error') {
       return <h3> 404 Product Not Found </h3>;
     }
     return <div> ... product is loading ... </div>;
   }
-};
+}
+
+export const ProductPageContainer = connect(
+  state => ({ product: selectProduct(state) }),
+  dispatch => bindActionCreators({ fetchById }, dispatch)
+)(ProductPageFetcher);
