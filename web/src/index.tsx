@@ -6,13 +6,17 @@ import thunk from 'redux-thunk';
 
 import { App } from './App';
 import { reducer as product } from './product';
+import { reducer as products } from './products';
 
 import './index.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  combineReducers({ product }),
+  combineReducers({
+    product,
+    products
+  }),
   composeEnhancers(applyMiddleware(thunk))
 );
 

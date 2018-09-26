@@ -12,6 +12,7 @@ interface IContainerProps {
   fetchById: typeof fetchById;
   product: IProduct & {
     status: 'loading' | 'loaded' | 'error' | null;
+    error: Error;
   };
 }
 
@@ -39,7 +40,7 @@ class ProductPageFetcher extends Component<ProductPageFetcherProps> {
       return <ProductPage product={this.props.product} />;
     }
     if (this.props.product.status === 'error') {
-      return <h3> 404 Product Not Found </h3>;
+      return <h3> Error: {this.props.product.error.message} </h3>;
     }
     return <div> ... product is loading ... </div>;
   }

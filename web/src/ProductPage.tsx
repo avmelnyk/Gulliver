@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IProduct } from './productApiMock';
+import { IProduct } from './productApi';
 
 interface IProductPageProps {
   product: IProduct;

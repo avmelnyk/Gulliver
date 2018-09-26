@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
 import { ActionType, createAsyncAction, getType } from 'typesafe-actions';
 
-import { getById, IProduct } from './productApiMock';
+import { getById, IProduct } from './productApi';
 
 interface IFetchByIdRequestPayload {
   product_id: string;

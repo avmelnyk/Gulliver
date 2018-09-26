@@ -1,16 +1,14 @@
 import * as React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const Home = () => (
   <div>
-    <ul>
-      <li>
-        <Link to="/products/1">Product 1</Link>
-      </li><li>
-        <Link to="/products/2">Product 2</Link>
-      </li><li>
-        <Link to="/products/1337">Link to a non existent product</Link>
-      </li>
-    </ul>
+    <h2>Welcome to the Web Shop.</h2>
+    <p>
+      <Link to="/products/0_o">Link to a non existent product #1</Link>
+    </p>
+    <p>
+      <Link to="/products/1337">Link to a non existent product #2</Link>
+    </p>
   </div>
 );

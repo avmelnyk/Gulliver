@@ -10,6 +10,7 @@ import { NotFound } from './404';  // TODO: async import
 import './App.css';
 import { Home } from './Home';
 import { ProductPageContainer } from './ProductPageContainer';
+import { ProductsPageContainer } from './ProductsPageContainer';
 
 export class App extends React.Component {
   render () {
@@ -18,7 +19,7 @@ export class App extends React.Component {
         <div>
           <ul>
             <li>
-              <Link to="/">Products</Link>
+              <Link to="/products">Products</Link>
             </li><li>
               <Link to="/0_o">Non existent page</Link>
             </li>
@@ -29,6 +30,7 @@ export class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/products/:id" component={ProductPageContainer} />
+            <Route path="/products" component={ProductsPageContainer} />
             <Route component={NotFound} />
           </Switch>
         </div>
