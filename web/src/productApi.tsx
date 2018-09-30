@@ -1,17 +1,17 @@
 import { get } from './ajax';
 
 export interface IProduct {
-  product_id: string;  // FIXME: currently a Number on the backend
+  product_id: string;
   category: string;
   code: string;
   name: string;
   price: number;
 }
 
-export function getAll (): Promise<IProduct[]> {
-  return get('/api/products');
+export function getAll () {
+  return get<IProduct[]>('/api/products');
 }
 
-export function getById (id: string): Promise<IProduct> {
-  return get('/api/products/' + id);
+export function getById (id: string) {
+  return get<IProduct>('/api/products/' + id);
 }

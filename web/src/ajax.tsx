@@ -1,8 +1,8 @@
-export function get (url: string) {
+export function get<T>(url: string): Promise<T> {
   return fetch(url).then(response => response.json());
 }
 
-export function post (url: string, data: any) {
+export function post<T = undefined>(url: string, data: T): Promise<T> {
   return fetch(url, {
     method: 'POST',
     headers: {
@@ -13,7 +13,7 @@ export function post (url: string, data: any) {
   .then(response => response.json());
 }
 
-export function patch (url: string, data: any) {
+export function patch<T = undefined>(url: string, data: T): Promise<T> {
   return fetch(url, {
     method: 'PATCH',
     headers: {
