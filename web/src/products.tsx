@@ -23,7 +23,12 @@ export const fetchAll = (): FetchAllThunk => async (dispatch) => {
   }
 };
 
-export function reducer(state: IProduct[] = [], action: FetchAllAction) {
+const initialState = {
+  status: null,
+  items: [] as IProduct[]
+};
+
+export function reducer(state = initialState, action: FetchAllAction) {
   switch (action.type) {
   case getType(fetchAllActions.request):
     return {
@@ -42,6 +47,6 @@ export function reducer(state: IProduct[] = [], action: FetchAllAction) {
       error: action.payload
     };
   default:
-    return { status: null };
+    return state;
   }
 }

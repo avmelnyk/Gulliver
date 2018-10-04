@@ -28,8 +28,12 @@ export const fetchById = (id: string): FetchByIdThunk => async (dispatch) => {
   }
 };
 
+const initialState: Partial<IProduct> & { status: null } = {
+  status: null
+};
+
 // TODO: TS should complain if not all action types are covered by this reducer
-export function reducer(state: IProduct | null = null, action: FetchByIdAction) {
+export function reducer(state = initialState, action: FetchByIdAction) {
   switch (action.type) {
   case getType(fetchByIdActions.request):
     return {
@@ -46,6 +50,6 @@ export function reducer(state: IProduct | null = null, action: FetchByIdAction) 
       error: action.payload
     };
   default:
-    return { status: null };
+    return state;
   }
 }
