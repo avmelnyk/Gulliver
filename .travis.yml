@@ -1,7 +1,7 @@
 matrix:
   include:
     - language: java
-      jdk: oraclejdk10
+      jdk: openjdk10
       before_install:
         - cd api
       deploy:
@@ -9,7 +9,6 @@ matrix:
         api_key:
           secure: $HEROKU_API_KEY
         app: gulliver-api
-        skip_cleanup: true
     - language: node_js
       node_js:
         - 10
