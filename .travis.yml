@@ -10,7 +10,6 @@ matrix:
           secure: $HEROKU_API_KEY
         app: gulliver-api
         skip_cleanup: true
-        local_dir: target
     - language: node_js
       node_js:
         - 10
