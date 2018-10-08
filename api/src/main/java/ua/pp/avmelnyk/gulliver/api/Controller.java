@@ -3,7 +3,7 @@ package ua.pp.avmelnyk.gulliver.api;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ua.pp.avmelnyk.gulliver.api.model.Cart;
-import java.util.ArrayList;
+import ua.pp.avmelnyk.gulliver.api.model.Product;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -39,12 +39,10 @@ public class Controller {
     }
 
     @PostMapping("/carts")
-    public Cart createCart(@RequestParam("pid") String product_id, @RequestParam("qty") int quantity ){
-        Cart cart = new Cart(UUID.randomUUID(), new ArrayList<String>());
-        for (int i = 0;i<quantity; i++){
-            cart.getProducts().add(product_id);
-        }
-        carts.put(cart.cart_id, cart);
+    public Cart createCart(@RequestParam("pid") Long product_id, @RequestParam("qty") int quantity ){
+        Cart cart = new Cart(UUID.randomUUID(), new HashMap<>());
+        cart.getProducts().put(getProduct(product_id), quantity);
+        carts.put(cart.getCart_id(), cart);
         return cart;
     }
 
@@ -54,11 +52,9 @@ public class Controller {
     }
 
     @PutMapping("/carts/{cart_id}")
-    public Cart changeCart(@PathVariable UUID cart_id, @RequestParam("pid") String product_id, @RequestParam("qty") int quantity){
+    public Cart changeCart(@PathVariable UUID cart_id, @RequestParam("pid") Long product_id, @RequestParam("qty") int quantity){
         Cart cart =  carts.get(cart_id);
-        for (int i = 0; i < quantity; i++){
-            cart.getProducts().add(product_id);
-        }
+        cart.getProducts().put(getProduct(product_id), quantity);
         carts.put(cart_id, cart);
         return cart;
     }

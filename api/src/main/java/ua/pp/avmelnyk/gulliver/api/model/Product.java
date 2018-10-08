@@ -1,4 +1,4 @@
-package ua.pp.avmelnyk.gulliver.api;
+package ua.pp.avmelnyk.gulliver.api.model;
 
 public class Product {
 

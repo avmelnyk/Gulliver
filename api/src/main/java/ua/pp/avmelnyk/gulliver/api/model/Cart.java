@@ -1,15 +1,15 @@
 package ua.pp.avmelnyk.gulliver.api.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+
 import java.util.Objects;
 import java.util.UUID;
 
 public class Cart {
+    private UUID cart_id;
+    private HashMap<Product, Integer>products;
 
-    public UUID cart_id;
-    private ArrayList<String>products;
-
-    public Cart(UUID cart_id, ArrayList<String> products) {
+    public Cart(UUID cart_id, HashMap<Product, Integer> products) {
         this.cart_id = cart_id;
         this.products = products;
     }
@@ -22,11 +22,11 @@ public class Cart {
         this.cart_id = cart_id;
     }
 
-    public ArrayList<String> getProducts() {
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<String> products) {
+    public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
     }
 
