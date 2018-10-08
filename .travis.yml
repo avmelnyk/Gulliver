@@ -2,7 +2,7 @@ matrix:
   include:
     - language: java
       jdk:
-        - openjdk10
+        - oraclejdk8
       before_install:
         - cd api
       deploy:
