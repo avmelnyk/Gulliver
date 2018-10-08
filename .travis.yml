@@ -5,8 +5,13 @@ matrix:
         - 10
       before_install:
         - cd web
+      script:
+        - npm test
+        - npm run build
       deploy:
         provider: heroku
         api_key:
           secure: $HEROKU_API_KEY
         app: webshop-web
+        skip_cleanup: true
+        local_dir: build
